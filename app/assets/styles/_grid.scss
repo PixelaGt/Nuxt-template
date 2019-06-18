@@ -7,11 +7,11 @@ $xl-screen: 1916px !default;
 /* Grid settings */
 $container-max-width: 1360px !default;
 $container-width: 95%;
-$gap-xs: 12px !default;
-$gap-sm: 16px !default;
-$gap-md: 20px !default;
-$gap-lg: 24px !default;
-$gap-xl: 28px !default;
+$gap-xs: 1.2rem !default;
+$gap-sm: 1.6rem !default;
+$gap-md: 2.0rem !default;
+$gap-lg: 2.4rem !default;
+$gap-xl: 2.8rem !default;
 
 .Grid {
   &-container {

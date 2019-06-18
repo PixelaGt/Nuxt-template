@@ -38,6 +38,7 @@ module.exports = {
   ** Plugins to load before mounting the App
   */
   plugins: [
+    { src: '@/plugins/i18n', ssr: true },
     { src: '@/plugins/prismic', ssr: true },
     { src: '@/plugins/prismic-components', ssr: true }
   ],
