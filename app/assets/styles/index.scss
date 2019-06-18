@@ -1,0 +1,7 @@
+/* GLOBAL STYLES */
+// First, import variables and all independent styles
+@import 'variables';
+
+//Second, import all dependent styles or styles that can be overwritten with previous styles
+@import 'grid';
+@import 'base';
