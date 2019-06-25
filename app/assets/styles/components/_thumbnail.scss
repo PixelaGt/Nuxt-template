@@ -1,0 +1,19 @@
+.thumb {
+  &-contain img {
+    height: 100%;
+    object-fit: contain;
+    width: 100%;
+  }
+
+  &-cover img {
+    height: 100%;
+    object-fit: cover;
+    width: 100%;
+  }
+
+  &-fill img {
+    height: 100%;
+    object-fit: fill;
+    width: 100%;
+  }
+}

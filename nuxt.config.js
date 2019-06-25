@@ -31,7 +31,7 @@ module.exports = {
   ** Global CSS
   */
   css: [
-    '~/assets/styles/index.scss'
+    '~/assets/styles/main.scss'
   ],
 
   /*
@@ -66,7 +66,7 @@ module.exports = {
   */
   styleResources: {
     scss: [
-      '@/assets/styles/index.scss'
+      '@/assets/styles/main.scss'
     ]
   },
 
