@@ -49,8 +49,9 @@ module.exports = {
   modules: [
     // Doc: https://axios.nuxtjs.org/usage
     '@nuxtjs/axios',
-    '@nuxtjs/style-resources',
     '@nuxtjs/eslint-module',
+    '@nuxtjs/style-resources',
+    'nuxt-webfontloader',
     ['nuxt-i18n', i18n]
   ],
   /*
@@ -68,6 +69,15 @@ module.exports = {
     scss: [
       '@/assets/styles/main.scss'
     ]
+  },
+
+  /*
+  ** Webfontloader configuration
+  */
+  webfontloader: {
+    google: {
+      families: ['Montserrat:400'] // Loads Lato font with weights 400 and 700
+    }
   },
 
   /*
