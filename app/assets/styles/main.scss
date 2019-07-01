@@ -1,9 +1,10 @@
 /* GLOBAL STYLES */
+@import 'abstracts/mixins';
 @import 'abstracts/variables';
 
-@import 'base/reset';
-@import 'base/typography';
+@import 'layout/grid';
 
 @import 'components/thumbnail';
 
-@import 'layout/grid';
+@import 'base/base';
+@import 'base/typography';

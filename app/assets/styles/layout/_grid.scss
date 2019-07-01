@@ -1,19 +1,62 @@
 /* Breakpoints */
-$sm-screen: 480px !default;
-$md-screen: 768px !default;
-$lg-screen: 1264px !default;
-$xl-screen: 1916px !default;
+$sm-screen: 37.5em !default; // 600px
+$md-screen: 56.25em !default; // 900px
+$lg-screen: 75em !default; // 1200px
+$xl-screen: 112.5em !default; // 1800px
 
 /* Grid settings */
-$container-max-width: 1360px !default;
+$columns: 12 !default;
+$container-max-width: 136rem !default;
 $container-width: 95%;
-$gap-xs: 2.4rem !default;
-$gap-sm: 3.2rem !default;
-$gap-md: 4rem !default;
-$gap-lg: 4.8rem !default;
-$gap-xl: 6.4rem !default;
 
-.Grid {
+$gutter-xs-h: 2.4rem !default;
+$gutter-xs-v: 2.4rem !default;
+
+$gutter-sm-h: 3.2rem !default;
+$gutter-sm-v: 3.2rem !default;
+
+$gutter-md-h: 4rem !default;
+$gutter-md-v: 4rem !default;
+
+$gutter-lg-h: 4.8rem !default;
+$gutter-lg-v: 4.8rem !default;
+
+$gutter-xl-h: 6.4rem !default;
+$gutter-xl-v: 6.4rem !default;
+
+@mixin max-screen($max-width: null) {
+  @if $max-width != null {
+    @media screen and (max-width: $max-width) {
+      @content
+    };
+  }
+}
+
+@mixin min-screen($min-width: null) {
+  @if $min-width != null {
+    @media screen and (min-width: $min-width) {
+      @content
+    };
+  }
+}
+
+@mixin sm-screen {
+  @media screen and (min-width: $sm-screen) { @content };
+}
+
+@mixin md-screen {
+  @media screen and (min-width: $md-screen) { @content };
+}
+
+@mixin lg-screen {
+  @media screen and (min-width: $lg-screen) { @content };
+}
+
+@mixin xl-screen {
+  @media screen and (min-width: $xl-screen) { @content };
+}
+
+.g {
   &-container {
     margin: 0 auto;
     max-width: $container-max-width;
@@ -25,98 +68,106 @@ $gap-xl: 6.4rem !default;
     flex-direction: row;
     flex-wrap: wrap;
 
-    margin-bottom: -$gap-xs / 2;
-    margin-left: -$gap-xs / 2;
-    margin-right: -$gap-xs / 2;
-    margin-top: -$gap-xs / 2;
+    margin-bottom: -$gutter-xs-v / 2;
+    margin-left: -$gutter-xs-h / 2;
+    margin-right: -$gutter-xs-h / 2;
+    margin-top: -$gutter-xs-v / 2;
 
-    @media screen and (min-width: $sm-screen) {
-      margin-bottom: -$gap-sm / 2;
-      margin-left: -$gap-sm / 2;
-      margin-right: -$gap-sm / 2;
-      margin-top: -$gap-sm / 2;
+    @include sm-screen {
+      margin-bottom: -$gutter-sm-v / 2;
+      margin-left: -$gutter-sm-h / 2;
+      margin-right: -$gutter-sm-h / 2;
+      margin-top: -$gutter-sm-v / 2;
     }
 
-    @media screen and (min-width: $md-screen) {
-      margin-bottom: -$gap-md / 2;
-      margin-left: -$gap-md / 2;
-      margin-right: -$gap-md / 2;
-      margin-top: -$gap-md / 2;
+    @include md-screen {
+      margin-bottom: -$gutter-md-v / 2;
+      margin-left: -$gutter-md-h / 2;
+      margin-right: -$gutter-md-h / 2;
+      margin-top: -$gutter-md-v / 2;
     }
 
-    @media screen and (min-width: $lg-screen) {
-      margin-bottom: -$gap-lg / 2;
-      margin-left: -$gap-lg / 2;
-      margin-right: -$gap-lg / 2;
-      margin-top: -$gap-lg / 2;
+    @include lg-screen {
+      margin-bottom: -$gutter-lg-v / 2;
+      margin-left: -$gutter-lg-h / 2;
+      margin-right: -$gutter-lg-h / 2;
+      margin-top: -$gutter-lg-v / 2;
     }
 
-    @media screen and (min-width: $xl-screen) {
-      margin-bottom: -$gap-xl / 2;
-      margin-left: -$gap-xl / 2;
-      margin-right: -$gap-xl / 2;
-      margin-top: -$gap-xl / 2;
+    @include xl-screen {
+      margin-bottom: -$gutter-xl-v / 2;
+      margin-left: -$gutter-xl-h / 2;
+      margin-right: -$gutter-xl-h / 2;
+      margin-top: -$gutter-xl-v / 2;
     }
   }
 }
 
-@mixin col($cols: null, $max-cols: 12) {
+@mixin col-xs($cols: null) {
   @if $cols != null {
-    $total-width: ($cols/$max-cols) * 100%;
-    width: calc(#{$total-width} - #{$gap-xs});
+    $total-width: ($cols/$columns) * 100%;
+    width: calc(#{$total-width} - #{$gutter-xs-h});
   }
 
   flex-shrink: 0;
-  margin-bottom: $gap-xs / 2;
-  margin-left: $gap-xs / 2;
-  margin-right: $gap-xs / 2;
-  margin-top: $gap-xs / 2;
+  margin-bottom: $gutter-xs-v / 2;
+  margin-left: $gutter-xs-h / 2;
+  margin-right: $gutter-xs-h / 2;
+  margin-top: $gutter-xs-v / 2;
+}
 
-  @media screen and (min-width: $sm-screen) {
+@mixin col-sm($cols: null) {
+  @include sm-screen {
     @if $cols != null {
-      $total-width: ($cols/$max-cols) * 100%;
-      width: calc(#{$total-width} - #{$gap-sm});
+      $total-width: ($cols/$columns) * 100%;
+      width: calc(#{$total-width} - #{$gutter-sm-h});
     }
 
-    margin-bottom: $gap-sm / 2;
-    margin-left: $gap-sm / 2;
-    margin-right: $gap-sm / 2;
-    margin-top: $gap-sm / 2;
+    margin-bottom: $gutter-sm-v / 2;
+    margin-left: $gutter-sm-h / 2;
+    margin-right: $gutter-sm-h / 2;
+    margin-top: $gutter-sm-v / 2;
   }
+}
 
-  @media screen and (min-width: $md-screen) {
+@mixin col-md($cols: null) {
+  @include md-screen {
     @if $cols != null {
-      $total-width: ($cols/$max-cols) * 100%;
-      width: calc(#{$total-width} - #{$gap-md});
+      $total-width: ($cols/$columns) * 100%;
+      width: calc(#{$total-width} - #{$gutter-md-h});
     }
 
-    margin-bottom: $gap-md / 2;
-    margin-left: $gap-md / 2;
-    margin-right: $gap-md / 2;
-    margin-top: $gap-md / 2;
+    margin-bottom: $gutter-md-v / 2;
+    margin-left: $gutter-md-h / 2;
+    margin-right: $gutter-md-h / 2;
+    margin-top: $gutter-md-v / 2;
   }
+}
 
-  @media screen and (min-width: $lg-screen) {
+@mixin col-lg($cols: null) {
+  @include lg-screen {
     @if $cols != null {
-      $total-width: ($cols/$max-cols) * 100%;
-      width: calc(#{$total-width} - #{$gap-lg});
+      $total-width: ($cols/$columns) * 100%;
+      width: calc(#{$total-width} - #{$gutter-lg-h});
     }
 
-    margin-bottom: $gap-lg / 2;
-    margin-left: $gap-lg / 2;
-    margin-right: $gap-lg / 2;
-    margin-top: $gap-lg / 2;
+    margin-bottom: $gutter-lg-v / 2;
+    margin-left: $gutter-lg-h / 2;
+    margin-right: $gutter-lg-h / 2;
+    margin-top: $gutter-lg-v / 2;
   }
+}
 
-  @media screen and (min-width: $xl-screen) {
+@mixin col-xl($cols: null) {
+  @include xl-screen {
     @if $cols != null {
-      $total-width: ($cols/$max-cols) * 100%;
-      width: calc(#{$total-width} - #{$gap-xl});
+      $total-width: ($cols/$columns) * 100%;
+      width: calc(#{$total-width} - #{$gutter-xl-h});
     }
 
-    margin-bottom: $gap-xl / 2;
-    margin-left: $gap-xl / 2;
-    margin-right: $gap-xl / 2;
-    margin-top: $gap-xl / 2;
+    margin-bottom: $gutter-xl-v / 2;
+    margin-left: $gutter-xl-h / 2;
+    margin-right: $gutter-xl-h / 2;
+    margin-top: $gutter-xl-v / 2;
   }
 }
